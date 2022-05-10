@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="es.usj.individualassignment">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.IndividualAssignment"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".A2MovieList"
+            android:exported="false" />
+        <activity
+            android:name=".A7GenresView"
+            android:exported="false" />
+        <activity
+            android:name=".A7ActorsView"
+            android:exported="false" />
+        <activity
+            android:name=".A6AddMovie"
+            android:exported="false" />
+        <activity
+            android:name=".A5ViewMovie"
+            android:exported="false" />
+        <activity
+            android:name=".A4EditMovie"
+            android:exported="false" />
+        <activity
+            android:name=".A3Contact"
+            android:exported="false" />
+        <activity
+            android:name=".A1Spash"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
