@@ -119,6 +119,11 @@
                     app:layout_constraintStart_toEndOf="@+id/textViewRating"
                     app:layout_constraintTop_toTopOf="@+id/textViewRatingValue"
                     tools:text="21st march 1990" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/textViewSynopsis"
@@ -200,12 +205,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewRuntimeTitle" />
 
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMovie"
+                android:id="@+id/rvActor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/textViewActorsTitle" />
+
+            <TextView
+                android:id="@+id/textViewGenresTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_margin="8dp"
+                android:text="@string/genres"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvActor" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenres"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewGenresTitle" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomActorAdapter (var listaActores:List<Actor>): RecyclerView.Adapter<CustomActorAdapter.ViewHolder>() {
+class CustomGenreAdapter (var listaGenres:List<Genre>): RecyclerView.Adapter<CustomGenreAdapter.ViewHolder>() {
 
-    var lista:List<Actor> = listOf()
+    var lista:List<Genre> = listOf()
 
     init {
-        lista = listaActores
+        lista = listaGenres
     }
 
 

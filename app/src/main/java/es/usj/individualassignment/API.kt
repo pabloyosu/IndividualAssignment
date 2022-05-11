@@ -46,7 +46,7 @@ class API {
     }
 
     fun getGenre():String{
-        val urlConnection = URL("http://10.0.2.2:8080/genre")
+        val urlConnection = URL("http://10.0.2.2:8080/genres")
         val connection: HttpURLConnection = urlConnection.openConnection() as HttpURLConnection
 
         try{

@@ -25,9 +25,10 @@ class A5ViewMovie : AppCompatActivity() {
         binding.textViewSynopsisValue.text = movie.description
         binding.textViewDirectorValue.text = movie.director
         binding.textViewRuntimeValue.text = movie.runtime.toString()
-        binding.rvActor.layoutManager = LinearLayoutManager(this)
+        binding.rvActor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvActor.adapter= CustomActorAdapter(obtenerActores(movie.actors as ArrayList<Int>))
-
+        binding.rvGenres.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvGenres.adapter= CustomGenreAdapter(obtenerGenres(movie.genres as ArrayList<Int>))
     }
 
     fun obtenerActores(actores:ArrayList<Int>):ArrayList<Actor>{
@@ -41,5 +42,18 @@ class A5ViewMovie : AppCompatActivity() {
             }
         }
         return listaActores
+    }
+
+    fun obtenerGenres(genres:ArrayList<Int>):ArrayList<Genre>{
+        var listaGenres :ArrayList<Genre> = arrayListOf()
+        for (genre in genres){
+            for(genre2 in SingletonLista.listGenres){
+                if(genre== genre2.id)
+                {
+                    listaGenres.add(genre2)
+                }
+            }
+        }
+        return listaGenres
     }
 }
