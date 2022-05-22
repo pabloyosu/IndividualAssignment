@@ -5,21 +5,23 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.io.Serializable
+import java.util.*
+import kotlin.collections.ArrayList
 
-class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
-
-    //val titles = arrayOf("Movie 1", "Movie 2","Movie 3", "Movie 4" )
-    //val details = arrayOf("detalle 1", "detalle 2","detalle 3", "detalle 4" )
-    //val images = intArrayOf(R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground,
-        //R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground)
-    val lista:List<Movie>
+class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(), Filterable{
+    
+    var lista:List<Movie>
+    val listaFija:List<Movie>
     init {
         lista = listaMovies
+        listaFija=listaMovies
     }
 
 
@@ -57,6 +59,34 @@ class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAda
                 ContextCompat.startActivity(itemView.context, intent, null)
             }
         }
+    }
+
+    inner class FilterMovies: Filter(){
+        override fun performFiltering(p0: CharSequence?): FilterResults {
+            var listaFiltrada:ArrayList<Movie> = arrayListOf()
+            listaFiltrada = listaFija.filter { p0!= null && it.title.lowercase(Locale.getDefault()).contains(
+                p0.toString().lowercase(Locale.getDefault())
+            ) } as ArrayList<Movie>
+
+            var filterResult = FilterResults()
+            filterResult.values=listaFiltrada
+
+            return filterResult
+        }
+
+        override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+            lista = listOf()
+            if (p1 != null) {
+                lista= p1.values as List<Movie>
+            }
+            notifyDataSetChanged()
+        }
+
+
+    }
+
+    override fun getFilter(): Filter {
+        return FilterMovies()
     }
 
 

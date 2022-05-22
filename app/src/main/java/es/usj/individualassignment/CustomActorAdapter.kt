@@ -25,7 +25,7 @@ class CustomActorAdapter (var listaActores:List<Actor>): RecyclerView.Adapter<Cu
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTitle.text = lista.get(position).name
-
+        holder.click(lista.get(position))
     }
 
     override fun getItemCount(): Int {
@@ -38,13 +38,13 @@ class CustomActorAdapter (var listaActores:List<Actor>): RecyclerView.Adapter<Cu
             itemTitle = itemView.findViewById(R.id.title_card_actor)
         }
 
-        /*fun click(actor : Actor){
+        fun click(actor : Actor){
             itemView.setOnClickListener{
-                val intent = Intent (itemView.context, A5ViewMovie::class.java)
-                intent.putExtra("Movie", movie)
+                val intent = Intent (itemView.context, A7ActorsView::class.java)
+                intent.putExtra("actor", actor)
                 ContextCompat.startActivity(itemView.context, intent, null)
             }
-        }*/
+        }
     }
 
 

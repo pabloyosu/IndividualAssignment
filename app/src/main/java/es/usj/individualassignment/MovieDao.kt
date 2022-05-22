@@ -19,4 +19,10 @@ interface MovieDao {
 
     @Delete
     fun delete(movie: Movie)
+
+    @Insert
+    fun insert(movie: Movie)
+
+    @Query("SELECT MAX (id) FROM Movie ")
+    fun getMax(): Int
 }

@@ -5,15 +5,19 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/splashscreen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_a2_movie_list.xml" value="0.13728470111448834" />
-        <entry key="app/src/main/res/layout/activity_a3_contact.xml" value="0.21693840579710144" />
+        <entry key="app/src/main/res/layout/activity_a3_contact.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_a4_edit_movie.xml" value="0.13405797101449277" />
-        <entry key="app/src/main/res/layout/activity_a5_view_movie.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_a6_add_movie.xml" value="0.10260416666666666" />
+        <entry key="app/src/main/res/layout/activity_a5_view_movie.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_a6_add_movie.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_a7_actors_view.xml" value="0.21693840579710144" />
+        <entry key="app/src/main/res/layout/activity_a7_genres_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/actor_card_layaout.xml" value="0.21693840579710144" />
         <entry key="app/src/main/res/layout/card_layout.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/card_layout_actors_generos.xml" value="0.21693840579710144" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.165" />
+        <entry key="app/src/main/res/menu/menu_ok.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/movie_menu.xml" value="0.20833333333333334" />
       </map>
     </option>
   </component>

@@ -1,7 +1,10 @@
 package es.usj.individualassignment
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.usj.individualassignment.databinding.ActivityA2MovieListBinding
 import es.usj.individualassignment.databinding.ActivityA5ViewMovieBinding
@@ -10,6 +13,8 @@ class A5ViewMovie : AppCompatActivity() {
 
     private lateinit var binding: ActivityA5ViewMovieBinding
 
+    private lateinit var movie : Movie
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -17,7 +22,7 @@ class A5ViewMovie : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val movie = intent.getSerializableExtra("movie") as Movie
+        movie = intent.getSerializableExtra("movie") as Movie
 
         binding.textViewTitle.text = movie.title
         binding.textViewRatingValue.text= movie.rating.toString()
@@ -29,6 +34,22 @@ class A5ViewMovie : AppCompatActivity() {
         binding.rvActor.adapter= CustomActorAdapter(obtenerActores(movie.actors as ArrayList<Int>))
         binding.rvGenres.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvGenres.adapter= CustomGenreAdapter(obtenerGenres(movie.genres as ArrayList<Int>))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.movie_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.modify -> {
+                val intent = Intent(this, A4EditMovie::class.java)
+                intent.putExtra("movie", movie)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     fun obtenerActores(actores:ArrayList<Int>):ArrayList<Actor>{

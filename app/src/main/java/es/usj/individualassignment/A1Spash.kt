@@ -18,14 +18,13 @@ class A1Spash : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val getMoviesDb= API()
         val context = this
 
         SingletonMovies.start(this)
         GlobalScope.launch {
-            getMoviesDb.getMovies()
-            getMoviesDb.getActors()
-            getMoviesDb.getGenre()
+            API.getMovies()
+            API.getActors()
+            API.getGenre()
             SingletonLista.aniadirPeliculas()
             val sendIntent = Intent(context, A2MovieList::class.java)
             context.startActivity(sendIntent)

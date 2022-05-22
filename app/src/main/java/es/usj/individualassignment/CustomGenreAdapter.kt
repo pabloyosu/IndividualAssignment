@@ -25,6 +25,7 @@ class CustomGenreAdapter (var listaGenres:List<Genre>): RecyclerView.Adapter<Cus
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTitle.text = lista.get(position).name
+        holder.click(lista.get(position))
 
     }
 
@@ -38,13 +39,13 @@ class CustomGenreAdapter (var listaGenres:List<Genre>): RecyclerView.Adapter<Cus
             itemTitle = itemView.findViewById(R.id.title_card_actor)
         }
 
-        /*fun click(actor : Actor){
+        fun click(genre : Genre){
             itemView.setOnClickListener{
-                val intent = Intent (itemView.context, A5ViewMovie::class.java)
-                intent.putExtra("Movie", movie)
+                val intent = Intent (itemView.context, A7GenresView::class.java)
+                intent.putExtra("genre", genre)
                 ContextCompat.startActivity(itemView.context, intent, null)
             }
-        }*/
+        }
     }
 
 

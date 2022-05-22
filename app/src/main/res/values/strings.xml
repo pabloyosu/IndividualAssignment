@@ -10,4 +10,13 @@
     <string name="duration">Duration:</string>
     <string name="actors">Actors:</string>
     <string name="genres">Genres:</string>
+    <string name="telefono">678 67 86 78:</string>
+    <string name="correo">alu.99976@usj.es:</string>
+    <string name="web">www.usj.es:</string>
+    <string name="contact"> Contact</string>
+    <string name="modify"> Modify</string>
+    <string name="search"> Search</string>
+    <string name="filter"> Filter</string>
+    <string name="ok"> OK</string>
+    <string name="create"> Create</string>
 </resources>
