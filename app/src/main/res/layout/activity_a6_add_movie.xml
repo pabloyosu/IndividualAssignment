@@ -195,7 +195,7 @@
 
             <EditText
                 android:id="@+id/etActor"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Actor id"
                 app:layout_constraintStart_toStartOf="parent"
@@ -215,7 +215,7 @@
 
             <EditText
                 android:id="@+id/etGenres"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Genre id"
                 app:layout_constraintStart_toStartOf="parent"

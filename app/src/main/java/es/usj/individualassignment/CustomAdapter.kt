@@ -17,11 +17,11 @@ import kotlin.collections.ArrayList
 
 class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(), Filterable{
     
-    var lista:List<Movie>
-    val listaFija:List<Movie>
+    var lista:ArrayList<Movie>
+    val listaFija:ArrayList<Movie>
     init {
-        lista = listaMovies
-        listaFija=listaMovies
+        lista = listaMovies as ArrayList<Movie>
+        listaFija= listaMovies as ArrayList<Movie>
     }
 
 
@@ -75,9 +75,9 @@ class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAda
         }
 
         override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-            lista = listOf()
+            lista = arrayListOf()
             if (p1 != null) {
-                lista= p1.values as List<Movie>
+                lista= p1.values as ArrayList<Movie>
             }
             notifyDataSetChanged()
         }
@@ -89,5 +89,11 @@ class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAda
         return FilterMovies()
     }
 
+    fun update(){
+        listaFija.clear()
+        listaFija.addAll(SingletonLista.list)
+        lista.clear()
+        notifyDataSetChanged()
+    }
 
 }

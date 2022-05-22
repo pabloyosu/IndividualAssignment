@@ -53,4 +53,14 @@ class A2MovieList : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        (binding.rvMovie.adapter as CustomAdapter).listaFija.clear()
+        (binding.rvMovie.adapter as CustomAdapter).listaFija.addAll(SingletonLista.list)
+        (binding.rvMovie.adapter as CustomAdapter).lista.clear()
+        (binding.rvMovie.adapter as CustomAdapter).lista.addAll(SingletonLista.list)
+        (binding.rvMovie.adapter as CustomAdapter).notifyDataSetChanged()
+    }
 }
