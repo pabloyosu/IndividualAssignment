@@ -1,5 +1,6 @@
 package es.usj.individualassignment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -63,6 +64,11 @@ class A4EditMovie : AppCompatActivity() {
                     SingletonMovies.db.MovieDao().update(movieNew)
                     SingletonLista.list.add(SingletonLista.list.indexOf(movie), movieNew)
                     SingletonLista.list.remove(movie)
+
+                    val intent = Intent()
+                    intent.putExtra("movie", movieNew)
+                    setResult(Activity.RESULT_OK, intent)
+
                     finish()
                 }
             }

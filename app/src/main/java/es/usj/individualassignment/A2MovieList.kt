@@ -21,9 +21,7 @@ class A2MovieList : AppCompatActivity() {
         binding = ActivityA2MovieListBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        adapter = CustomAdapter(SingletonLista.list)
-        binding.rvMovie.layoutManager = LinearLayoutManager(this)
-        binding.rvMovie.adapter= adapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -56,11 +54,9 @@ class A2MovieList : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        adapter = CustomAdapter(SingletonLista.list)
+        binding.rvMovie.layoutManager = LinearLayoutManager(this)
+        binding.rvMovie.adapter= adapter
 
-        (binding.rvMovie.adapter as CustomAdapter).listaFija.clear()
-        (binding.rvMovie.adapter as CustomAdapter).listaFija.addAll(SingletonLista.list)
-        (binding.rvMovie.adapter as CustomAdapter).lista.clear()
-        (binding.rvMovie.adapter as CustomAdapter).lista.addAll(SingletonLista.list)
-        (binding.rvMovie.adapter as CustomAdapter).notifyDataSetChanged()
     }
 }

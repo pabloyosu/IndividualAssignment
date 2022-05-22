@@ -1,10 +1,13 @@
 package es.usj.individualassignment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.usj.individualassignment.databinding.ActivityA2MovieListBinding
 import es.usj.individualassignment.databinding.ActivityA5ViewMovieBinding
@@ -15,6 +18,8 @@ class A5ViewMovie : AppCompatActivity() {
 
     private lateinit var movie : Movie
 
+    lateinit var getResultados: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,16 +29,14 @@ class A5ViewMovie : AppCompatActivity() {
 
         movie = intent.getSerializableExtra("movie") as Movie
 
-        binding.textViewTitle.text = movie.title
-        binding.textViewRatingValue.text= movie.rating.toString()
-        binding.textViewReleaseDateValue.text = movie.year.toString()
-        binding.textViewSynopsisValue.text = movie.description
-        binding.textViewDirectorValue.text = movie.director
-        binding.textViewRuntimeValue.text = movie.runtime.toString()
-        binding.rvActor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvActor.adapter= CustomActorAdapter(obtenerActores(movie.actors as ArrayList<Int>))
-        binding.rvGenres.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvGenres.adapter= CustomGenreAdapter(obtenerGenres(movie.genres as ArrayList<Int>))
+        update()
+
+        getResultados = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if(it.resultCode == Activity.RESULT_OK){
+                movie= it.data?.getSerializableExtra("movie") as Movie
+                update()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,7 +49,7 @@ class A5ViewMovie : AppCompatActivity() {
             R.id.modify -> {
                 val intent = Intent(this, A4EditMovie::class.java)
                 intent.putExtra("movie", movie)
-                startActivity(intent)
+                getResultados.launch(intent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -76,5 +79,18 @@ class A5ViewMovie : AppCompatActivity() {
             }
         }
         return listaGenres
+    }
+
+    fun update(){
+        binding.textViewTitle.text = movie.title
+        binding.textViewRatingValue.text= movie.rating.toString()
+        binding.textViewReleaseDateValue.text = movie.year.toString()
+        binding.textViewSynopsisValue.text = movie.description
+        binding.textViewDirectorValue.text = movie.director
+        binding.textViewRuntimeValue.text = movie.runtime.toString()
+        binding.rvActor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvActor.adapter= CustomActorAdapter(obtenerActores(movie.actors as ArrayList<Int>))
+        binding.rvGenres.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvGenres.adapter= CustomGenreAdapter(obtenerGenres(movie.genres as ArrayList<Int>))
     }
 }
