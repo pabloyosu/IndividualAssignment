@@ -64,6 +64,10 @@ class A4EditMovie : AppCompatActivity() {
                     SingletonMovies.db.MovieDao().update(movieNew)
                     SingletonLista.list.add(SingletonLista.list.indexOf(movie), movieNew)
                     SingletonLista.list.remove(movie)
+                    if(movie.title != movieNew.title){
+                        SingletonPoster.deleteImage(movie.id,binding.etActor)
+                        SingletonPoster.showImage(movieNew,binding.etActor)
+                    }
 
                     val intent = Intent()
                     intent.putExtra("movie", movieNew)

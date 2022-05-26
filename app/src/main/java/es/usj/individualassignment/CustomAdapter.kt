@@ -2,6 +2,7 @@ package es.usj.individualassignment
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.io.FileInputStream
 import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,6 +33,11 @@ class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAda
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val imagePath = SingletonPoster.showImage(lista.get(position), holder.itemImage)
+        if(imagePath.exists()){
+            val bitmap = BitmapFactory.decodeStream(FileInputStream(imagePath))
+            holder.itemImage.setImageBitmap(bitmap)
+        }
         holder.itemTitle.text = lista.get(position).title
         holder.itemDetail.text = lista.get(position).rating.toString()
         holder.itemImage.setImageResource(R.drawable.ic_launcher_foreground)
@@ -89,11 +96,5 @@ class CustomAdapter(var listaMovies:List<Movie>): RecyclerView.Adapter<CustomAda
         return FilterMovies()
     }
 
-    fun update(){
-        listaFija.clear()
-        listaFija.addAll(SingletonLista.list)
-        lista.clear()
-        notifyDataSetChanged()
-    }
 
 }

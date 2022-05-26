@@ -2,6 +2,7 @@ package es.usj.individualassignment
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.usj.individualassignment.databinding.ActivityA2MovieListBinding
 import es.usj.individualassignment.databinding.ActivityA5ViewMovieBinding
+import java.io.FileInputStream
 
 class A5ViewMovie : AppCompatActivity() {
 
@@ -82,6 +84,11 @@ class A5ViewMovie : AppCompatActivity() {
     }
 
     fun update(){
+        val imagePath = SingletonPoster.showImage(movie, binding.ivPoster)
+        if(imagePath.exists()){
+            val bitmap = BitmapFactory.decodeStream(FileInputStream(imagePath))
+            binding.ivPoster.setImageBitmap(bitmap)
+        }
         binding.textViewTitle.text = movie.title
         binding.textViewRatingValue.text= movie.rating.toString()
         binding.textViewReleaseDateValue.text = movie.year.toString()
